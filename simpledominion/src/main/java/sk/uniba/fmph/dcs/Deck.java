@@ -2,12 +2,13 @@ package sk.uniba.fmph.dcs;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
-public class Deck {
-    List<CardInterface> deckCards;
+public class Deck implements DeckInterface{
+    LinkedList<CardInterface> deckCards;
     public Deck(List<CardInterface> cards) {
-        this.deckCards = cards;
+        this.deckCards = new LinkedList<>(cards);
     }
     public ArrayList<CardInterface> draw(int count) {
         if (deckCards.size() < count) {
@@ -18,5 +19,15 @@ public class Deck {
             pickedCards.add(deckCards.get(i));
         }
         return pickedCards;
+    }
+
+    @Override
+    public void put(CardInterface card) {
+        deckCards.add(card);
+    }
+
+    @Override
+    public int getSize() {
+        return deckCards.size();
     }
 }

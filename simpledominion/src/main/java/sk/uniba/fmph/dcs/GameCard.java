@@ -2,15 +2,22 @@ package sk.uniba.fmph.dcs;
 
 public class GameCard implements CardInterface{
     GameCardType cardType;
+    private TurnStatus turnStatus;
 
-    public GameCard(GameCardType type) {
+    public GameCard(GameCardType type, TurnStatus ts)
+    {
         this.cardType = type;
+        this.turnStatus = ts;
     }
+
+
+
     @Override
-    public void evaluate(TurnStatus ts) {
-        ts.actions+=cardType.getPlusActions();
-        ts.buys+=cardType.getPlusBuys();
-        ts.coins+=cardType.getPlusCoins();
+    public int evaluate() {
+        turnStatus.actions+=cardType.getPlusActions();
+        turnStatus.buys+=cardType.getPlusBuys();
+        turnStatus.coins+=cardType.getPlusCoins();
+        return cardType.getPlusCards();
     }
 
     @Override

@@ -26,4 +26,5 @@ public class GameState {
         this.points = points;
         this.turn = turn;
     }
+
 }
